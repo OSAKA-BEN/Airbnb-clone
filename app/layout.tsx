@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { getCurrentUser } from "./actions/getCurrentUser";
+import LoginModal from "./components/LoginModal";
 import Navbar from "./components/Navbar";
 import RegisterModal from "./components/RegisterModal";
 import "./globals.css";
@@ -21,19 +23,21 @@ export const metadata: Metadata = {
   description: "Find your dream home.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar />
+        <Navbar currentUser={currentUser} />
         <ToasterProvider />
         <RegisterModal />
+        <LoginModal />
         {children}
       </body>
     </html>
