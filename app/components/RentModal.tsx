@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { FieldValues, useForm } from "react-hook-form";
 import useRentModal from "../hooks/useRentModal";
 import { categories } from "./Categories";
 import CategoryInput from "./CategoryInput";
@@ -20,6 +21,37 @@ const RentModal = () => {
   const rentModal = useRentModal();
 
   const [step, setStep] = useState(STEPS.CATEGORY);
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm<FieldValues>({
+    defaultValues: {
+      category: "",
+      location: null,
+      guestCount: 1,
+      roomCount: 1,
+      bathroomCount: 1,
+      imageSrc: "",
+      price: 1,
+      title: "",
+      description: "",
+    },
+  });
+
+  const category = watch("category");
+
+  const setCustomValue = (id: string, value: any) => {
+    setValue(id, value, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
+  };
 
   const onBack = () => {
     setStep((value) => value - 1);
@@ -57,8 +89,8 @@ const RentModal = () => {
             <CategoryInput
               icon={item.icon}
               label={item.label}
-              selected={false}
-              onClick={() => {}}
+              selected={item.label === category}
+              onClick={(label) => setCustomValue("category", label)}
             />
           </div>
         ))}
