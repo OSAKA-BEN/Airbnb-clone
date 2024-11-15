@@ -13,11 +13,12 @@ import HeartButton from "./HeartButton";
 interface ListingCardProps {
   data: SafeListing;
   reservation?: Reservation;
-  disabled?: boolean;
   onAction?: (id: string) => void;
+  disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
   currentUser?: SafeUser | null;
+  disableRedirection?: boolean;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -28,6 +29,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
   actionLabel,
   actionId = "",
   currentUser,
+  disableRedirection = false,
 }) => {
   const router = useRouter();
   const { getByValue } = useCountries();
@@ -58,11 +60,13 @@ const ListingCard: React.FC<ListingCardProps> = ({
     return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
 
+  const handleClick = useCallback(() => {
+    if (disableRedirection) return;
+    router.push(`/listings/${data.id}`);
+  }, [router, data.id, disableRedirection]);
+
   return (
-    <div
-      onClick={() => router.push(`/listings/${data.id}`)}
-      className="col-span-1 cursor-pointer group"
-    >
+    <div onClick={handleClick} className="col-span-1 cursor-pointer group">
       <div className="flex flex-col gap-2 w-full">
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
           <Image
