@@ -2,7 +2,7 @@
 
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import useLoginModal from "../hooks/useLoginModal";
 import useRegisterModal from "../hooks/useRegisterModal";
@@ -21,6 +21,21 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal();
   const rentModal = useRentModal();
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside, true);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -35,7 +50,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   }, [loginModal, currentUser, rentModal]);
 
   return (
-    <div className="relative">
+    <div className="relative" ref={menuRef}>
       <div className="flex flex-row items-center gap-3">
         <div
           onClick={onRent}
