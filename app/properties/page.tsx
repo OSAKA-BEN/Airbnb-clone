@@ -1,11 +1,13 @@
-import { getCurrentUser } from "@/app/actions/getCurrentUser";
-import { getListings } from "@/app/actions/getListings";
-import EmptyState from "@/app/components/EmptyState";
+import { getCurrentUser } from "@/actions/getCurrentUser";
+import { getListings } from "@/actions/getListings";
+import EmptyState from "@/components/EmptyState";
 import PropertiesClient from "./PropertiesClient";
+
+export const dynamic = "force-dynamic";
 
 const PropertiesPage = async () => {
   const currentUser = await getCurrentUser();
-  const listings = await getListings({ userId: currentUser?.id });
+  const listings = (await getListings({ userId: currentUser?.id })) || [];
 
   if (!currentUser) {
     return <EmptyState title="Unauthorized" subtitle="Please login" />;

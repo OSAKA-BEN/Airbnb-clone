@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import prisma from "../libs/prismadb";
+import { authOptions } from "@/libs/auth-option";
+import prisma from "@/libs/prismadb";
 
 export async function getCurrentUser() {
   try {

@@ -1,12 +1,12 @@
 "use client";
 
-import { categories } from "@/app/components/Categories";
-import Container from "@/app/components/Container";
-import ListingHead from "@/app/components/ListingHead";
-import ListingInfo from "@/app/components/ListingInfo";
-import ListingReservation from "@/app/components/ListingReservation";
-import useLoginModal from "@/app/hooks/useLoginModal";
-import { SafeListing, SafeUser } from "@/app/types";
+import { categories } from "@/components/Categories";
+import Container from "@/components/Container";
+import ListingHead from "@/components/ListingHead";
+import ListingInfo from "@/components/ListingInfo";
+import ListingReservation from "@/components/ListingReservation";
+import useLoginModal from "@/hooks/useLoginModal";
+import { SafeListing, SafeUser } from "@/types";
 import { Reservation } from "@prisma/client";
 import axios from "axios";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";

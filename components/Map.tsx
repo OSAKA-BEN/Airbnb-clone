@@ -4,15 +4,12 @@ import L from "leaflet";
 import React from "react";
 import { MapContainer, Marker, TileLayer } from "react-leaflet";
 
-import "leaflet/dist/leaflet.css";
-// @ts-expect-error leaflet is not typed
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-// @ts-expect-error leaflet is not typed
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
-// @ts-expect-error leaflet is not typed
+import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/leaflet.css";
 
-// @ts-expect-error leaflet is not typed
+// @ts-expect-error Leaflet is not typed
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({

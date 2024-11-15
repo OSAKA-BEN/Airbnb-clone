@@ -1,6 +1,6 @@
 "use client";
 
-import Calendar from "@/app/components/Calendar";
+import Calendar from "@/components/Calendar";
 import { formatISO } from "date-fns";
 import {
   useRouter,

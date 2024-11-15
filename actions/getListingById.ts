@@ -1,4 +1,4 @@
-import prisma from "../libs/prismadb";
+import prisma from "@/libs/prismadb";
 
 export default async function getListingById(params: { listingId: string }) {
   try {

@@ -1,9 +1,9 @@
-import Container from "@/app/components/Container";
-import Heading from "@/app/components/Heading";
-import { SafeUser } from "@/app/types";
+import Container from "@/components/Container";
+import Heading from "@/components/Heading";
+import { SafeUser } from "@/types";
 import { Listing } from "@prisma/client";
 import React from "react";
-import ListingCard from "../components/ListingCard";
+import ListingCard from "../../components/ListingCard";
 
 interface FavoritesClientProps {
   listings: Listing[];

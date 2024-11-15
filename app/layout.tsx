@@ -1,21 +1,22 @@
+import { getCurrentUser } from "@/actions/getCurrentUser";
+import ClientOnly from "@/components/ClientOnly";
+import LoginModal from "@/components/LoginModal";
+import Navbar from "@/components/Navbar";
+import RegisterModal from "@/components/RegisterModal";
+import RentModal from "@/components/RentModal";
+import SearchModal from "@/components/SearchModal";
+import ToasterProvider from "@/providers/ToasterProvider";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { getCurrentUser } from "./actions/getCurrentUser";
-import LoginModal from "./components/LoginModal";
-import Navbar from "./components/Navbar";
-import RegisterModal from "./components/RegisterModal";
-import RentModal from "./components/RentModal";
-import SearchModal from "./components/SearchModal";
 import "./globals.css";
-import ToasterProvider from "./providers/ToasterProvider";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "../fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "../fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
@@ -36,12 +37,14 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar currentUser={currentUser} />
-        <ToasterProvider />
-        <RegisterModal />
-        <LoginModal />
-        <RentModal />
-        <SearchModal />
+        <ClientOnly>
+          <Navbar currentUser={currentUser} />
+          <ToasterProvider />
+          <RegisterModal />
+          <LoginModal />
+          <RentModal />
+          <SearchModal />
+        </ClientOnly>
         <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>

@@ -6,10 +6,10 @@ import { Listing, Reservation } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/dist/client/components/navigation";
 import toast from "react-hot-toast";
-import Container from "../components/Container";
-import Heading from "../components/Heading";
-import ListingCard from "../components/ListingCard";
-import { SafeUser } from "../types";
+import Container from "../../components/Container";
+import Heading from "../../components/Heading";
+import ListingCard from "../../components/ListingCard";
+import { SafeUser } from "../../types";
 
 interface ReservationsClientProps {
   reservations: (Reservation & {

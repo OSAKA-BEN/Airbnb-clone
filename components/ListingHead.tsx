@@ -1,4 +1,4 @@
-import { SafeUser } from "@/app/types";
+import { SafeUser } from "@/types";
 import Image from "next/image";
 import React from "react";
 import useCountries from "../hooks/useCountries";

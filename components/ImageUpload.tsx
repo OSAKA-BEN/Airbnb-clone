@@ -1,6 +1,5 @@
 "use client";
 
-// @ts-expect-error CldUploadButton is not defined in the types
 import { CldUploadButton } from "next-cloudinary";
 import Image from "next/image";
 import { TbPhotoPlus } from "react-icons/tb";
