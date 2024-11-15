@@ -1,8 +1,5 @@
 import React from "react";
-// @ts-expect-error react-select is not typed
-import Select from "react-select";
-// @ts-expect-error react-select is not typed
-import { Theme } from "react-select";
+import Select, { Theme } from "react-select";
 import useCountries from "../hooks/useCountries";
 
 export type CountrySelectValue = {
